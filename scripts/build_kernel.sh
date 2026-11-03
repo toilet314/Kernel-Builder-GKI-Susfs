@@ -31,6 +31,9 @@ if [ "$BASE_VER" != "5.10" ] && [ -f "tools/bazel" ]; then
     # Enforce standard sandboxing, disable trimming dynamically, and inject MAKEFLAGS
     tools/bazel run --config=stamp \
       $TRIM_FLAGS \
+      --jobs=2 \
+      --local_ram_resources=6000 \
+      --local_cpu_resources=2 \
       --action_env=SOURCE_DATE_EPOCH="$OFFICIAL_DATE" \
       --action_env=STABLE_BUILD_VERSION="-g$OFFICIAL_HASH" \
       --action_env=KLEAF_KERNEL_BUILD_VERSION="-g$OFFICIAL_HASH" \
